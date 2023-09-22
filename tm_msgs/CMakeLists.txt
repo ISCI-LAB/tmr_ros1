@@ -29,6 +29,7 @@ add_service_files(
   JointMove.srv
   CartesianMove.srv
   SetPositions.srv
+  SetVelocity.srv
   AskSta.srv
 )
 

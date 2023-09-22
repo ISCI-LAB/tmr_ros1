@@ -124,6 +124,22 @@ bool TmRosNode::set_positions(tm_msgs::SetPositionsRequest &req, tm_msgs::SetPos
     res.ok = rb;
     return rb;
 }
+
+bool TmRosNode::set_velocity(tm_msgs::SetVelocityRequest &req, tm_msgs::SetVelocityResponse &res)
+{
+    bool rb = false;
+    switch(req.motion_type) {
+    case tm_msgs::SetVelocityRequest::Joint:
+        rb = iface_.set_vel_mode_target(VelMode::Joint, req.velocity);
+        break;
+    case tm_msgs::SetVelocityRequest::Tool:
+        rb = iface_.set_vel_mode_target(VelMode::Tool, req.velocity);
+        break;
+    }
+    res.ok = rb;
+    return rb;
+}
+
 bool TmRosNode::ask_sta(tm_msgs::AskStaRequest &req, tm_msgs::AskStaResponse &res)
 {
     res.ok = listenNodeConnection->ask_sta_struct(req.subcmd, req.subdata, req.wait_time, res.subcmd, res.subdata);

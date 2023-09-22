@@ -98,6 +98,8 @@ TmRosNode::TmRosNode(const std::string &host)
 
     set_positions_srv_ = nh_.advertiseService("tm_driver/set_positions", &TmRosNode::set_positions, this);
 
+    set_velocity_srv_ = nh_.advertiseService("tm_driver/set_velocity", &TmRosNode::set_velocity, this);
+
     ask_sta_srv_ = nh_.advertiseService("tm_driver/ask_sta", &TmRosNode::ask_sta, this);
 
 }
